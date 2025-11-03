@@ -71,7 +71,10 @@ def data(request):
     return request.param
 
 
-@pytest.mark.thread_unsafe
+@pytest.mark.thread_unsafe(
+    reason=("tracemalloc is thread-unsafe, see "
+            "ttps://github.com/python/cpython/issues/126315")
+)
 def test_block_decompress_mem_usage(data, buffer_size):
     kwargs = {
         'strategy': "double_buffer",
