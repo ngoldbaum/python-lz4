@@ -18,6 +18,8 @@ def data(request):
     return request.param
 
 
+# coverage might allocate and cause this test to fail
+@pytest.mark.no_cover
 @pytest.mark.thread_unsafe(
     reason=("tracemalloc is thread-unsafe, see "
             "ttps://github.com/python/cpython/issues/126315")
