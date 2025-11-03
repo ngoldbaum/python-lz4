@@ -39,6 +39,7 @@ def test_block_decompress_mem_usage(data):
 
             if prev_snapshot:
                 stats = snapshot.compare_to(prev_snapshot, 'lineno')
-                assert stats[0].size_diff < (1024 * 8)
+                newline = "\n"
+                assert stats[0].size_diff < (1024 * 8), f"{stats[0]}, {stats[0].count}, {newline.join(stats[0].traceback.format())}"
 
             prev_snapshot = snapshot
